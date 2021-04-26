@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource auth="Container" 
+	 	driverClassName="oracle.jdbc.OracleDriver" 
+		maxIdle="10" 
+		maxTotal="20" 
+		maxWaitMillis="-1" 
+		name="jdbc/mymvc" 
+		password="mymvc" 
+		type="javax.sql.DataSource" 
+		url="jdbc:oracle:thin:@localhost:1521/xepdb1" 
+		username="mymvc"/>
+</Context>

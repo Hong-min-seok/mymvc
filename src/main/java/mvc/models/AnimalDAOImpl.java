@@ -1,0 +1,89 @@
+package mvc.models;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import oracle.jdbc.OracleTypes;
+
+public class AnimalDAOImpl implements AnimalDAO {
+	
+	/** 커넥션풀링 싱글톤으로 만들기 **********************************************/
+	private DataSource dataSource;
+
+	private static final AnimalDAO AnimalDAO = new AnimalDAOImpl();
+
+	public static AnimalDAO getInstance() {
+		return AnimalDAO;
+	}
+
+	private AnimalDAOImpl() {
+		try {
+			Context ctx = new InitialContext();
+
+			dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/mymvc");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("AnimalDAO 생성자에서 에러");
+		}
+	}
+	/*******************************************************************************/
+
+	@Override
+	public int getTotalRecord() throws SQLException {
+		
+		String runSP = "{? = call animalTotalRecord }";
+		
+		try(Connection conn = dataSource.getConnection();
+			CallableStatement cstmt = conn.prepareCall(runSP)) {
+			
+			cstmt.registerOutParameter(1, Types.INTEGER);
+			cstmt.executeUpdate();
+			
+			return (int) cstmt.getInt(1);
+		}
+	}
+
+	@Override
+	public List<AnimalDTO> getAnimalList(int startrow, int endrow) throws SQLException {
+		
+		AnimalDTO bean;
+		List<AnimalDTO> list = new ArrayList<AnimalDTO>();
+		String runSP = "{call getAnimalList(?,?,?)}";
+		
+		try(Connection conn = dataSource.getConnection();
+			CallableStatement cstmt = conn.prepareCall(runSP)) {
+			
+			cstmt.setInt(1, startrow);
+			cstmt.setInt(2, endrow);
+			cstmt.registerOutParameter(3, OracleTypes.CURSOR);
+			
+			cstmt.execute();
+			
+			try(ResultSet rs = (ResultSet) cstmt.getObject(3)) {
+				while(rs.next()) {
+					bean = new AnimalDTO();
+					bean.setCode(rs.getInt("code"));
+					bean.setName(rs.getString("name"));
+					bean.setType(rs.getString("type"));
+					bean.setDatetime(rs.getDate("datetime"));
+					bean.setCondition(rs.getString("condition"));
+					bean.setStatus(rs.getInt("status"));
+					bean.setImg(rs.getString("img"));
+					bean.setShow_board(rs.getInt("show_board"));
+					list.add(bean);
+				}
+			}
+		}
+		return list;
+	}
+
+}
