@@ -20,7 +20,7 @@
 				<input type="radio" name="type" values="고양이">고양이
 			</div>
 			<div>
-				<label for="datetime">입소일</label>
+				<label for="datetime">입소일f</label>
 				<input type="date" name="datetime">
 			</div>
 			<div>
