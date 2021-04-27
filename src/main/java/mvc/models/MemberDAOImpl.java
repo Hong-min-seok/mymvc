@@ -2,6 +2,7 @@ package mvc.models;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
@@ -66,6 +67,33 @@ public class MemberDAOImpl implements MemberDAO {
 			cstmt.executeUpdate();
 			return (int) cstmt.getInt(1);
 		}
+	}
+
+	@Override
+	public MemberDTO getMemberDetail(String memberId) throws SQLException {
+
+		String runSp = "{call getMemberDetail(?,?,?,?)}";
+		MemberDTO memberDTO;
+		
+		try(Connection conn = dataSource.getConnection();
+			CallableStatement cstmt = conn.prepareCall(runSp)) {
+			
+			cstmt.setString(1, memberId);
+			cstmt.registerOutParameter(2, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(4, java.sql.Types.VARCHAR);
+			
+			cstmt.executeUpdate();
+			
+			memberDTO = new MemberDTO();
+			
+			memberDTO.setId(memberId);
+			memberDTO.setName(cstmt.getString(2));
+			memberDTO.setPhone(cstmt.getString(3));
+			memberDTO.setEmail(cstmt.getString(4));
+			
+		}
+		return memberDTO;
 	}
 
 }

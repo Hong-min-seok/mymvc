@@ -9,4 +9,10 @@ public interface AnimalDAO {
 
 	List<AnimalDTO> getAnimalList(int startrow, int endrow) throws SQLException;
 
+	void addAnimal(AnimalDTO animalDTO) throws SQLException;
+
+	AnimalDTO getAnimalDetail(int code) throws SQLException;
+
+	void adoptComplete(int code) throws SQLException;
+
 }

@@ -1,6 +1,5 @@
 package mvc.controllers.animal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import mvc.fx.AbstractController;
 import mvc.fx.ModelAndView;
-import mvc.models.AnimalDTO;
+import mvc.models.ApplicationsDTO;
 import mvc.service.PetmilyService;
 import mvc.service.PetmilyServiceImpl;
 
-public class AnimalListController implements AbstractController{
+public class ApplicationListController implements AbstractController{
 
 	PetmilyService petmilyService = PetmilyServiceImpl.getInstance();
 	
@@ -20,9 +19,10 @@ public class AnimalListController implements AbstractController{
 	public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) {
 		
 		ModelAndView mav = new ModelAndView();
+		int animal_code = Integer.parseInt(request.getParameter("code"));
 		
 		int page = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-		int pageSize = 9;
+		int pageSize = 10;
 		int totalData = 0;
 		int totalPage = 0;
 		int pageLen = 5;
@@ -36,16 +36,23 @@ public class AnimalListController implements AbstractController{
 		int endRow = (page * pageSize);
 		
 		
-		List<AnimalDTO> animalList;
+		List<ApplicationsDTO> applicationsList;
 		
 		try {
-			totalData = petmilyService.getTotalRecord();
+			totalData = petmilyService.getTotalApplicationsRecord();
 			totalPage = (totalData % pageSize == 0) ? totalData / pageSize : (totalData / pageSize) + 1;
 			
-			animalList = petmilyService.getAnimalList(startRow, endRow);
+			if(endPage > totalPage) endPage = totalPage;
 			
-			mav.setPath("/WEB-INF/views/animallist.jsp");
-			mav.addObject("animalList", animalList);
+			applicationsList = petmilyService.getApplicationsList(startRow, endRow, animal_code);
+			
+			mav.setPath("/WEB-INF/views/applicationslist.jsp");
+			mav.addObject("applicationsList", applicationsList);
+			mav.addObject("page", page);
+			mav.addObject("startPage", startPage);
+			mav.addObject("endPage", endPage);
+			mav.addObject("totalPage", totalPage);
+			mav.addObject("animal_code", animal_code);
 			
 			
 		} catch (Exception e) {

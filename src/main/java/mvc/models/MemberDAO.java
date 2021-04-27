@@ -8,4 +8,6 @@ public interface MemberDAO {
 
 	int loginMember(String id, String password) throws SQLException;
 
+	MemberDTO getMemberDetail(String memberId) throws SQLException;
+
 }

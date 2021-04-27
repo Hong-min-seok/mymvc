@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(urlPatterns="/petmily/*")
+@WebServlet(urlPatterns="/petmily/*", loadOnStartup = 10)
 public class DispatcherServlet extends HttpServlet{
 	private Map<String, AbstractController> controllerMap = new HashMap<>();
 

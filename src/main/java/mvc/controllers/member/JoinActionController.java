@@ -37,7 +37,6 @@ public class JoinActionController implements AbstractController {
 			mav.addObject("msg", "회원가입되었습니다!");
 			mav.addObject("url", "login");
 		} catch (Exception e) {
-			e.printStackTrace();
 			mav.setPath("/WEB-INF/views/result.jsp");
 			mav.addObject("msg", "회원가입에 실패하였습니다");
 			mav.addObject("url", "javascript:history.back()");

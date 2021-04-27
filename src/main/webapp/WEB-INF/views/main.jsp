@@ -9,6 +9,6 @@
 </head>
 <body>
 	<h1>${member_id}님 안녕하세요</h1>
-	<a href="animalList">분양중인 동물</a>
+	<a href="animalList?page=1">분양중인 동물</a>
 </body>
 </html>
