@@ -75,12 +75,12 @@
 	
 	<nav aria-label="paging" class="paging">
 	  	<ul class="pagination">
-	    	<li class="page-item disabled">
+	    	<li class="page-item">
 	    			<c:if test="${startPage == 1}">
-						<a class="page-link" href="#" tabindex="-1">Previous</a>
+						<a class="page-link" href="#">Previous</a>
 					</c:if>
 					<c:if test="${startPage != 1}">
-						<a class="page-link" href="applicationList?code=${animal_code}&page=${startPage-1}" tabindex="-1">Previous</a>
+						<a class="page-link" href="applicationsList?code=${animal_code}&page=${startPage-1}">Previous</a>
 					</c:if>
 	    	</li>
 	    	

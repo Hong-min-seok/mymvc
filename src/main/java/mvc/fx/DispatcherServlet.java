@@ -74,7 +74,7 @@ public class DispatcherServlet extends HttpServlet{
 			}
 		} else {
 
-			System.out.println("RequestDispatcher에서 길을 잃었다네~");
+			System.out.println("Controller를 찾을 수 없습니다.");
 		}
 
 	}
