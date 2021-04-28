@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.table {
+	width: 70%;
+	margin-left:auto;
+	margin-right: auto;
+	text-align: center;
+	font-family: 'nexon';
+}
+
+.table th {
+	text-align: center;
+}
+
+.paging {
+	display:flex;
+	flex-direction: row;
+	width:70%;
+	margin-left:auto;
+	margin-right:auto;
+	justify-content: center;
+	font-family: 'nexon';
+}

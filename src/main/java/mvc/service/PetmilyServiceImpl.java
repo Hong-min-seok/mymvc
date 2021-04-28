@@ -71,8 +71,8 @@ public class PetmilyServiceImpl implements PetmilyService {
 	}
 
 	@Override
-	public int getTotalApplicationsRecord() throws Exception {
-		return applicationsDAO.getTotalApplicationsRecord();
+	public int getTotalApplicationsRecord(int animal_code) throws Exception {
+		return applicationsDAO.getTotalApplicationsRecord(animal_code);
 	}
 
 	@Override

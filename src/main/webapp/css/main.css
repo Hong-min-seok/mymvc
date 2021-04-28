@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.poster {
+	position: absolute;
+	top: 20%;
+	left: 10%;
+	font-size: 2vw;
+	font-family: 'tmoney';
+	color: #034f7c;
+}

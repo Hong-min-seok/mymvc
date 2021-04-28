@@ -24,7 +24,7 @@ public interface PetmilyService {
 
 	void insertApplications(ApplicationsDTO applicationsDTO) throws Exception;
 
-	int getTotalApplicationsRecord() throws Exception;
+	int getTotalApplicationsRecord(int animal_code) throws Exception;
 
 	List<ApplicationsDTO> getApplicationsList(int startRow, int endRow, int animal_code) throws Exception;
 

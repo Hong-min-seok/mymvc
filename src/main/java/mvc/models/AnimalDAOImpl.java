@@ -114,7 +114,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 	public AnimalDTO getAnimalDetail(int code) throws SQLException {
 		
 		AnimalDTO animalDTO = new AnimalDTO();
-		String runSp = "{call getAnimalDetail(?,?,?,?,?)}";
+		String runSp = "{call getAnimalDetail(?,?,?,?,?,?)}";
 		
 		try(Connection conn = dataSource.getConnection();
 			CallableStatement cstmt = conn.prepareCall(runSp)) {
@@ -124,6 +124,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 			cstmt.registerOutParameter(3, java.sql.Types.VARCHAR);
 			cstmt.registerOutParameter(4, java.sql.Types.DATE);
 			cstmt.registerOutParameter(5, java.sql.Types.VARCHAR);
+			cstmt.registerOutParameter(6, java.sql.Types.VARCHAR);
 			
 			cstmt.executeUpdate();
 			
@@ -131,7 +132,8 @@ public class AnimalDAOImpl implements AnimalDAO {
 			animalDTO.setName(cstmt.getString(2));
 			animalDTO.setType(cstmt.getString(3));
 			animalDTO.setDatetime(cstmt.getString(4));
-			animalDTO.setImg(cstmt.getString(5));
+			animalDTO.setCondition(cstmt.getString(5));
+			animalDTO.setImg(cstmt.getString(6));
 			
 		}
 		return animalDTO;

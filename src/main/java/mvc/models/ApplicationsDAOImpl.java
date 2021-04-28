@@ -59,12 +59,13 @@ public class ApplicationsDAOImpl implements ApplicationsDAO {
 	}
 
 	@Override
-	public int getTotalApplicationsRecord() throws SQLException {
-		String runSP = "{? = call applicationTotalRecord }";
+	public int getTotalApplicationsRecord(int animal_code) throws SQLException {
+		String runSP = "{? = call applicationTotalRecord(?) }";
 
 		try (Connection conn = dataSource.getConnection(); CallableStatement cstmt = conn.prepareCall(runSP)) {
 
 			cstmt.registerOutParameter(1, Types.INTEGER);
+			cstmt.setInt(2, animal_code);
 			cstmt.executeUpdate();
 
 			return (int) cstmt.getInt(1);

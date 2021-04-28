@@ -7,7 +7,7 @@ public interface ApplicationsDAO {
 
 	void insertApplications(ApplicationsDTO applicationsDTO) throws SQLException;
 
-	int getTotalApplicationsRecord() throws SQLException;
+	int getTotalApplicationsRecord(int animal_code) throws SQLException;
 
 	List<ApplicationsDTO> getApplicationsList(int startRow, int endRow, int animal_code) throws SQLException;
 

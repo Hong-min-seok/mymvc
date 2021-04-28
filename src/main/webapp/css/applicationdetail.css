@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.form {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'nexon';
+	
+}
+
+.form th{
+	width: 10%;
+	text-align: center;
+	background-color: #cee8ff;
+}
+
+.form td {
+	padding-left: 10pt;
+}
+
+.content {
+	height: 400px;
+	vertical-align: middle;
+}
+
+.content_top {
+	height: 40px;
+	vertical-align: middle;
+}
+
+.bottom {
+	margin-top: 3em;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 5em;
+}
+
+.btn1 {
+	width: 200px;
+	height: 50px;
+}

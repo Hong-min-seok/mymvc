@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.add_animal_container {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'nexon';
+}
+
+.input_area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.form {
+	width:100%;
+}
+
+.form textarea {
+	width: 100%;
+}
+
+.form th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.bottom {
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top:5em;
+	margin-bottom:5em;
+}
+.btn1 {
+	width: 100px;
+	height: 40px;
+}
+
+.adopt_form_container {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'nexon';
+}
+
+.form td {
+	padding-left: 10pt;
+}
+
+.content_head {
+	height: 30px;
+	background-color: #cee8ff;
+}
+
+.content_bottom {
+	height: 30px;
+	background-color: #cee8ff;
+}
+
+textarea {
+	border: 0px;
+}

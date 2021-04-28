@@ -39,7 +39,7 @@ public class ApplicationListController implements AbstractController{
 		List<ApplicationsDTO> applicationsList;
 		
 		try {
-			totalData = petmilyService.getTotalApplicationsRecord();
+			totalData = petmilyService.getTotalApplicationsRecord(animal_code);
 			totalPage = (totalData % pageSize == 0) ? totalData / pageSize : (totalData / pageSize) + 1;
 			
 			if(endPage > totalPage) endPage = totalPage;
